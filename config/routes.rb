@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'post_images#index'
 
-  resources :post_images, only: [:new, :create, :index, :show] do
+  resources :post_images, only: [:new, :create, :index, :show, :destroy] do
   	resource :post_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
@@ -14,4 +15,7 @@ Rails.application.routes.draw do
   #２番目のresourceは「単数形」になっている。単数にすると、そのコントローラのidがリクエストに含まれなくなります。
   #今回、コメントの詳細ページは作成しません。
   #post_commentsのshowページが不要で、idの受け渡しも必要ないので、resourceとなっています。
+
+  resources :users, only: [:show, :edit, :update]
+
 end

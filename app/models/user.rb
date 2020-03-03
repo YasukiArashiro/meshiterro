@@ -11,7 +11,7 @@ class User < ApplicationRecord
   #1:Nの関係において、「1」のデータが削除された場合、関連する「N」のデータも削除される設定です。
   #この設定では、Userのデータが削除されたとき、そのUserが投稿したコメントデータも一緒に削除されます。
   has_many :favorites, dependent: :destroy
-
+  attachment :profile_image
 
 
 end
